@@ -136,7 +136,6 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ("/posts/", "Blog"),
-        ("/projects/", "Projects"),
         ("/categories/", "Tags"),
         ("/archive.html", "Archive"),
     ),
@@ -191,10 +190,10 @@ POSTS = (
     ("posts/*.html", "posts", "post.tmpl"),
 )
 PAGES = (
-    ("pages/*.rst", "pages", "page.tmpl"),
-    ("pages/*.md", "pages", "page.tmpl"),
-    ("pages/*.txt", "pages", "page.tmpl"),
-    ("pages/*.html", "pages", "page.tmpl"),
+    ("pages/*.rst", "", "story.tmpl"),
+    ("pages/*.md", "", "story.tmpl"),
+    ("pages/*.txt", "", "story.tmpl"),
+    ("pages/*.html", "", "story.tmpl"),
 )
 
 
@@ -229,7 +228,7 @@ TIMEZONE = "America/Los_Angeles"
 # 2 = using a string like “2 days ago”
 #
 # Your theme must support it, Bootstrap already does.
-# DATE_FANCINESS = 0
+DATE_FANCINESS = 2
 
 # While Nikola can select a sensible locale for each language,
 # sometimes explicit control can come handy.
@@ -514,7 +513,7 @@ HIDDEN_AUTHORS = ['Guest']
 # Final location for the main blog page and sibling paginated pages is
 # output / TRANSLATION[lang] / INDEX_PATH / index-*.html
 # (translatable)
-# INDEX_PATH = ""
+INDEX_PATH = "posts"
 
 # Optional HTML that displayed on “main” blog index.html files.
 # May be used for a greeting. (translatable)
@@ -851,7 +850,7 @@ IMAGE_FOLDERS = {'images': 'images'}
 # paraiso-light, pastie, perldoc, rrt, tango, trac, vim, vs, xcode
 # This list MAY be incomplete since pygments adds styles every now and then.
 # Check with list(pygments.styles.get_all_styles()) in an interpreter.
-# CODE_COLOR_SCHEME = 'default'
+CODE_COLOR_SCHEME = 'monokai'
 
 # FAVICONS contains (name, file, size) tuples.
 # Used to create favicon link like this:
@@ -860,17 +859,16 @@ FAVICONS = (
     ("icon", "/favicon.ico", "16x16"),
     ("icon", "/favicon-32x32.png", "32x32"),
     ("icon", "/favicon-96x96.png", "96x96"),
-    ("icon", "/apple-icon.png", "192x192"),
-    ("icon", "/apple-icon-precomposed.png", "192x192"),
-    ("icon", "/apple-icon-57x57.png", "57x57"),
-    ("icon", "/apple-icon-60x60.png", "60x60"),
-    ("icon", "/apple-icon-72x72.png", "72x72"),
-    ("icon", "/apple-icon-76x76.png", "76x76"),
-    ("icon", "/apple-icon-114x114.png", "114x114"),
-    ("icon", "/apple-icon-120x120.png", "120x120"),
-    ("icon", "/apple-icon-144x144.png", "144x144"),
-    ("icon", "/apple-icon-152x152.png", "152x152"),
-    ("icon", "/apple-icon-180x180.png", "180x180"),
+    ("icon", "/favicon-128.png", "128x128"),
+    ("icon", "/favicon-196x196.png", "196x196"),
+    ("icon", "/apple-touch-icon-57x57.png", "57x57"),
+    ("icon", "/apple-touch-icon-60x60.png", "60x60"),
+    ("icon", "/apple-touch-icon-72x72.png", "72x72"),
+    ("icon", "/apple-touch-icon-76x76.png", "76x76"),
+    ("icon", "/apple-touch-icon-114x114.png", "114x114"),
+    ("icon", "/apple-touch-icon-120x120.png", "120x120"),
+    ("icon", "/apple-touch-icon-144x144.png", "144x144"),
+    ("icon", "/apple-touch-icon-152x152.png", "152x152"),
 )
 
 # Show teasers (instead of full posts) in indexes? Defaults to False.
@@ -1063,7 +1061,9 @@ delimiters: [
 # Note: most Nikola-specific extensions are done via the Nikola plugin system,
 #       with the MarkdownExtension class and should not be added here.
 # The default is ['fenced_code', 'codehilite']
-MARKDOWN_EXTENSIONS = ['markdown.extensions.extra', 'markdown.extensions.toc', 'markdown.extensions.admonition', 'markdown.extensions.sane_lists', 'markdown.extensions.meta']
+MARKDOWN_EXTENSIONS = ['markdown.extensions.extra', 'markdown.extensions.codehilite']
+MARKDOWN_EXTENSIONS += ['markdown.extensions.toc', 'markdown.extensions.admonition']
+MARKDOWN_EXTENSIONS += ['markdown.extensions.sane_lists', 'markdown.extensions.meta']
 
 # Options to be passed to markdown extensions (See https://python-markdown.github.io/reference/)
 # Default is {} (no config at all)
@@ -1241,13 +1241,14 @@ BODY_END = """
         });
     });
     </script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118956129-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-54080172-1', 'auto');
-  ga('send', 'pageview');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118956129-1');
 </script>
 """
 # The possibility to extract metadata from the filename by using a
