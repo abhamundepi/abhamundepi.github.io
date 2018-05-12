@@ -1,4 +1,0 @@
-Sitemap: https://abhamundepi.github.io/sitemapindex.xml
-
-User-Agent: *
-Host: abhamundepi.github.io

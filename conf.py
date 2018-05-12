@@ -888,7 +888,7 @@ INDEX_TEASERS = True
 # }}                            A literal } (U+007D RIGHT CURLY BRACKET)
 
 # 'Read more...' for the index page, if INDEX_TEASERS is True (translatable)
-INDEX_READ_MORE_LINK = '<p class="more"><div class="text-success"> Reading Time: {reading_time} minutes </div> <a href="{link}">{read_more}…</a></p>'
+INDEX_READ_MORE_LINK = INDEX_READ_MORE_LINK = '<p class="text-success">Reading Time: {reading_time} minutes &emsp; <a href="{link}">{read_more}…</a></p>'
 # 'Read more...' for the feeds, if FEED_TEASERS is True (translatable)
 FEED_READ_MORE_LINK = '<p><a href="{link}">{read_more}…</a></p>'
 
